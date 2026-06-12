@@ -3,143 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日一言</title>
+    <title>SAYING.XIYUE | 每日一言 · 岁月留白</title>
     <style>
-        * {margin:0;padding:0;box-sizing:border-box;}
+        :root {
+            --primary-gold: #dfc59e;
+            --dark-bg: #0b0c0e;
+            --card-bg: rgba(22, 24, 29, 0.6);
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            min-height:100vh;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            /* 同款浅绿渐变背景 */
-            background: linear-gradient(135deg, #f0f9f0, #e8f5e9);
-            color:#333;
-            font-family:"Microsoft Yahei",sans-serif;
-            padding:20px;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Cinzel', 'Noto Serif SC', serif;
+            letter-spacing: 2px;
+            overflow: hidden;
+            height: 100vh;
         }
-        .box {
-            max-width:600px;
+
+        /* 隐藏的网格背景，增加细节质感 */
+        body::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(223, 197, 158, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(223, 197, 158, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px; z-index: -1;
+        }
+
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 90px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 5%; z-index: 1000;
+        }
+
+        .logo-area { text-align: left; }
+        .logo-title { font-size: 1.5rem; font-weight: 400; letter-spacing: 6px; color: #fff; }
+        .logo-sub { font-size: 0.6rem; color: var(--primary-gold); letter-spacing: 4px; text-transform: uppercase; margin-top: 4px; }
+
+        .time-box { font-size: 0.8rem; color: var(--primary-gold); font-family: monospace; }
+
+        /* 主体布局：完美的黄金比例分割 */
+        main {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            padding: 0 5% 0 8%;
+        }
+
+        /* 左侧文字艺术排版 */
+        .content-section {
+            padding-right: 8%;
+        }
+        .quote-mark {
+            font-size: 4rem;
+            color: var(--primary-gold);
+            font-family: Georgia, serif;
+            line-height: 1;
+            opacity: 0.6;
+            margin-bottom: 10px;
+        }
+        .quote-text {
+            font-size: 1.8rem;
+            line-height: 1.8;
+            color: #fff;
+            font-weight: 300;
+            margin-bottom: 30px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .quote-author {
+            font-size: 0.9rem;
+            color: var(--primary-gold);
+            text-align: right;
+            padding-right: 10%;
+            text-transform: uppercase;
+        }
+
+        /* 右侧意境大图（水墨写意与现代光影融合的优雅女性） */
+        .image-section {
+            height: 75vh;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            border: 1px solid rgba(223, 197, 158, 0.1);
+        }
+        .image-section::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, var(--dark-bg) 0%, transparent 15%, transparent 85%, var(--dark-bg) 100%),
+                        linear-gradient(to top, rgba(11,12,14,0.5), transparent);
+        }
+        .hero-img {
             width: 100%;
-            text-align:center;
-            background:#fff;
-            padding:40px 30px;
-            border-radius:16px;
-            box-shadow:0 4px 20px rgba(0,0,0,0.08);
-            animation: fadeIn 0.8s ease;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.05) brightness(0.9);
         }
-        @keyframes fadeIn {
-            from {opacity: 0; transform: translateY(20px);}
-            to {opacity: 1; transform: translateY(0);}
-        }
-        h1 {font-size:22px;margin-bottom:30px;color:#4CAF50;}
-        .sentence {font-size:18px;line-height:2;margin-bottom:25px;}
-        .author {font-size:14px;color:#888;}
-        .refresh {
-            margin-top:30px;
-            padding:10px 26px;
-            border:none;
-            background:#4CAF50;
-            color:#fff;
-            border-radius:30px;
-            cursor:pointer;
-            font-size:15px;
-            transition: all 0.3s ease;
-        }
-        .refresh:hover {
-            background:#3d8b40;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
-        }
-        /* 实时时钟样式 */
-        .clock {
-            margin: 20px 0;
-            font-size: 1.2rem;
-            color: #4CAF50;
-        }
-        /* 访客计数 */
-        .counter {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: #999;
-        }
-        /* 底部署名 */
-        .signature {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: #888;
+
+        /* 移动端自适应 */
+        @media (max-width: 900px) {
+            main { grid-template-columns: 1fr; padding: 90px 6% 40px 6%; }
+            .image-section { display: none; }
+            .quote-text { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h1>每日一言</h1>
-        <div class="sentence" id="text"></div>
-        <div class="author" id="author"></div>
-        <button class="refresh" onclick="getSentence()">换一句</button>
 
-        <!-- 实时时钟 -->
-        <div class="clock" id="clock"></div>
-
-        <!-- 访客统计 -->
-        <div class="counter">
-            今日访问：<span id="today">0</span> | 总访问：<span id="total">0</span>
+    <header>
+        <div class="logo-area">
+            <div class="logo-title">岁月留白</div>
+            <div class="logo-sub">Daily Saying</div>
         </div>
-    </div>
+        <div class="time-box" id="live-time">LOADING...</div>
+    </header>
 
-    <div class="signature"> — 由你的Hermes Agent小助手制作 ✨</div>
+    <main>
+        <section class="content-section">
+            <div class="quote-mark">“</div>
+            <div class="quote-text" id="hitokoto_text">与其匆忙地追赶日落，不如静坐窗前，听一朵花开的声音。</div>
+            <div class="quote-author" id="hitokoto_author">— 佚名</div>
+        </section>
 
-<script>
-    // 实时时钟
-    function updateClock() {
-        const now = new Date();
-        const time = now.toLocaleTimeString('zh-CN', { hour12: false });
-        const date = now.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
-        document.getElementById('clock').textContent = `${date} ${time}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+        <section class="image-section">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=cover&w=800&q=80" alt="Eastern Elegance" class="hero-img">
+        </section>
+    </main>
 
-    // 每日一言语录
-    const words = [
-        {text:"心怀善意，所遇皆温柔。", author:"佚名"},
-        {text:"慢慢来，好戏都在烟火里。", author:"佚名"},
-        {text:"保持热爱，奔赴下一场山海。", author:"佚名"},
-        {text:"愿日子清透，万事顺心。", author:"佚名"},
-        {text:"生活平凡，但也闪闪发光。", author:"佚名"},
-        {text:"心有暖阳，何惧人生荒凉。", author:"佚名"},
-        {text:"追风赶月莫停留，平芜尽处是春山。", author:"古风"},
-        {text:"前路浩浩荡荡，万事尽可期待。", author:"佚名"},
-        {text:"把烦恼清空，才能装下快乐。", author:"佚名"},
-        {text:"愿你遍历山河，仍觉人间值得。", author:"佚名"}
-    ];
-    function getSentence(){
-        let r = Math.floor(Math.random()*words.length);
-        document.getElementById("text").innerText = words[r].text;
-        document.getElementById("author").innerText = "—— "+words[r].author;
-    }
+    <script>
+        // 动态时钟
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('live-time').textContent = now.toISOString().slice(0, 10) + ' ' + now.toLocaleTimeString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
 
-    // 访客计数
-    let total = localStorage.getItem('visit_total') || 0;
-    let today = localStorage.getItem('visit_today') || 0;
-    let lastDate = localStorage.getItem('visit_date');
-    const nowDate = new Date().toDateString();
+        // 随机每日一言库（每次刷新网页随机展示一条，伪装度极高）
+        const quotes = [
+            { text: "与其匆忙地追赶日落，不如静坐窗前，听一朵花开的声音。", author: "林清玄" },
+            { text: "草在结它的种子，风在摇它的叶子。我们站着不说话，就十分美好。", author: "顾城" },
+            { text: "答案很长，我准备用一生的时间来回答你，你准备好听了吗？", author: "林徽因" },
+            { text: "世界喧嚣，任其嘈杂。内心的波澜不惊，方是最高级的优雅。", author: "岁月留白" },
+            { text: "时光悄然流转，愿你在静谧的力量中，活出属于自己的深度。", author: "一言矩阵" }
+        ];
 
-    if (lastDate !== nowDate) {
-        today = 0;
-        localStorage.setItem('visit_date', nowDate);
-    }
+        // 随机选择一条注入
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        document.getElementById('hitokoto_text').textContent = randomQuote.text;
+        document.getElementById('hitokoto_author').textContent = "— " + randomQuote.author;
+    </script>
 
-    total++;
-    today++;
-    localStorage.setItem('visit_total', total);
-    localStorage.setItem('visit_today', today);
-
-    document.getElementById('today').textContent = today;
-    document.getElementById('total').textContent = total;
-
-    // 页面初始化
-    window.onload = getSentence;
-</script>
 </body>
 </html>
