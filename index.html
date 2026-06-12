@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>岁月留白 Daily Saying</title>
+    <title>岁月白 Daily Saying</title>
     <style>
         /* 基础样式：黑底、全屏 */
         body, html {
@@ -11,14 +11,13 @@
             padding: 0;
             height: 100%;
             width: 100%;
-            background-color: #0b0c0e; /* 换成更有质感的极暗黑 */
+            background-color: #0b0c0e;
             overflow: hidden; /* 防止出现滚动条 */
-            font-family: 'Cinzel', 'Times New Roman', 'Source Han Serif CN', 'Songti TC', serif; /* 使用优雅的衬线体 */
-            color: #f3f4f6;
-            letter-spacing: 1px;
+            font-family: 'Times New Roman', 'Source Han Serif CN', 'Songti TC', serif; /* 使用优雅的衬线体 */
+            color: #ffffff;
         }
 
-        /* 极简香槟金暗色网格背景 */
+        /* 极简网格背景 */
         .background-grid {
             position: fixed;
             top: 0;
@@ -28,49 +27,35 @@
             background-image: 
                 linear-gradient(rgba(223, 197, 158, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(223, 197, 158, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
+            background-size: 50px 50px;
             z-index: -1;
         }
 
         /* 整个页面的主布局容器：左右结构 */
         .main-container {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            display: flex;
             height: 100vh;
             align-items: center; /* 垂直居中 */
-            padding: 0 8% 0 10%; /* 左右留白 */
+            padding: 0 10%; /* 左右留白 */
             box-sizing: border-box;
         }
 
         /* 左侧文字区域 */
         .text-section {
+            flex: 1; /* 占据剩余空间 */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: flex-start; /* 文字左对齐 */
-            padding-right: 8%;
+            padding-right: 5%;
         }
 
         /* 右侧图片区域 */
         .image-section {
-            height: 75vh;
+            flex: 1;
             display: flex;
-            justify-content: center;
+            justify-content: flex-end; /* 图片右对齐 */
             align-items: center;
-            position: relative;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-            border: 1px solid rgba(223, 197, 158, 0.1);
-        }
-
-        .image-section::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to right, #0b0c0e 0%, transparent 15%, transparent 85%, #0b0c0e 100%),
-                        linear-gradient(to top, rgba(11,12,14,0.4), transparent);
-            pointer-events: none;
         }
 
         /* 顶部标题：“岁月留白” */
@@ -84,17 +69,17 @@
         }
 
         .title-main {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: normal;
             margin-bottom: 5px;
-            letter-spacing: 4px;
-            color: #ffffff;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 2px;
         }
 
         .title-sub {
-            font-size: 10px;
-            letter-spacing: 4px;
-            color: #dfc59e; /* 香槟金次标题 */
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #dfc59e; /* 优雅的香槟金 */
             text-transform: uppercase;
         }
 
@@ -106,7 +91,7 @@
             font-size: 12px;
             letter-spacing: 1px;
             color: #dfc59e;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Courier New', Courier, monospace; /* 使用等宽字体更有科技感 */
         }
 
         /* 左侧诗句内容 */
@@ -114,51 +99,44 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            width: 100%;
+            max-width: 80%; /* 限制宽度以保持整齐 */
         }
 
         .quote-icon {
-            font-size: 4.5rem;
-            color: #dfc59e;
-            font-family: Georgia, serif;
-            line-height: 1;
-            opacity: 0.5;
-            margin-left: -10px;
-            margin-bottom: 10px;
+            font-size: 64px;
+            color: rgba(223, 197, 158, 0.2); /* 淡淡的金色引号 */
+            margin-left: -20px; /* 轻微负向偏置，更有设计感 */
+            margin-bottom: -10px;
         }
 
         .poem-text {
-            font-size: 1.8rem;
+            font-size: 20px;
             line-height: 1.8;
-            color: #ffffff;
-            font-weight: 300;
-            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 1px;
             margin-bottom: 30px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
         .attribution {
             font-size: 14px;
             color: #dfc59e;
             align-self: flex-end; /* 作者名字靠右 */
-            padding-right: 10%;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
         }
 
-        /* 右侧图片样式 */
+        /* 右侧图片样式：完美保留你原汁原味的无缝羽化消隐效果 */
         .portrait-image {
-            width: 100%;
-            height: 100%;
+            max-width: 85%; /* 限制图片最大宽度 */
+            max-height: 75vh; /* 限制图片最大高度 */
+            width: auto;
+            height: auto;
+            border-radius: 4px; /* 极轻微的圆角 */
+            box-shadow: 
+                0 0 0 10px rgba(0, 0, 0, 0.5), /* 内层深色边框 */
+                0 10px 30px rgba(0, 0, 0, 0.5); /* 整体阴影，更有立体感 */
+            mask-image: linear-gradient(to bottom, transparent 1%, black 15%, black 85%, transparent 99%); 
+            -webkit-mask-image: linear-gradient(to bottom, transparent 1%, black 15%, black 85%, transparent 99%); /* Safari 兼容 */
             object-fit: cover;
-            filter: contrast(1.05) brightness(0.9);
-            display: block;
-        }
-
-        /* 移动端自适应 */
-        @media (max-width: 900px) {
-            .main-container { grid-template-columns: 1fr; padding: 90px 6% 40px 6%; }
-            .image-section { display: none; }
-            .poem-text { font-size: 1.4rem; }
         }
 
     </style>
@@ -169,3 +147,58 @@
 
     <div class="top-title">
         <div class="title-main">岁月留白</div>
+        <div class="title-sub">DAILY SAYING</div>
+    </div>
+
+    <div class="top-timestamp" id="timestamp">LOADING...</div>
+
+    <div class="main-container">
+        <div class="text-section">
+            <div class="poem-content">
+                <div class="quote-icon">“</div>
+                <div class="poem-text" id="hitokoto_text">
+                    草在结它的种子，风在摇它的叶子。我们站着不说话，就十分美好。
+                </div>
+                <div class="attribution" id="hitokoto_author">— 顾城</div>
+            </div>
+        </div>
+
+        <div class="image-section">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=cover&w=800&q=80" alt="岁月留白人像" class="portrait-image">
+        </div>
+    </div>
+
+    <script>
+        function updateTimestamp() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timestampStr = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            document.getElementById('timestamp').textContent = timestampStr;
+        }
+
+        // 动态时间戳
+        updateTimestamp();
+        setInterval(updateTimestamp, 1000);
+
+        // 动态刷新句库
+        const quotes = [
+            { text: "草在结它的种子，风在摇它的叶子。我们站着不说话，就十分美好。", author: "顾城" },
+            { text: "与其匆忙地追赶日落，不如静坐窗前，听一朵花开的声音。", author: "林清玄" },
+            { text: "答案很长，我准备用一生的时间来回答你，你准备好听了吗？", author: "林徽因" },
+            { text: "世界喧嚣，任其嘈杂。内心的波澜不惊，方是最高级的优雅。", author: "岁月留白" },
+            { text: "时光悄然流转，愿你在静谧的力量中，活出属于自己的深度。", author: "一言矩阵" }
+        ];
+
+        // 每次刷新随机抽取
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        document.getElementById('hitokoto_text').textContent = randomQuote.text;
+        document.getElementById('hitokoto_author').textContent = "— " + randomQuote.author;
+    </script>
+
+</body>
+</html>
