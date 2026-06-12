@@ -12,8 +12,8 @@
             height: 100%;
             width: 100%;
             background-color: #0b0c0e;
-            overflow: hidden; /* 防止出现滚动条 */
-            font-family: 'Times New Roman', 'Source Han Serif CN', 'Songti TC', serif; /* 使用优雅的衬线体 */
+            overflow: hidden;
+            font-family: 'Times New Roman', 'Source Han Serif CN', 'Songti TC', serif;
             color: #ffffff;
         }
 
@@ -35,18 +35,18 @@
         .main-container {
             display: flex;
             height: 100vh;
-            align-items: center; /* 垂直居中 */
-            padding: 0 10%; /* 左右留白 */
+            align-items: center;
+            padding: 0 10%;
             box-sizing: border-box;
         }
 
         /* 左侧文字区域 */
         .text-section {
-            flex: 1; /* 占据剩余空间 */
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start; /* 文字左对齐 */
+            align-items: flex-start;
             padding-right: 5%;
         }
 
@@ -54,11 +54,11 @@
         .image-section {
             flex: 1;
             display: flex;
-            justify-content: flex-end; /* 图片右对齐 */
+            justify-content: flex-end;
             align-items: center;
         }
 
-        /* 顶部标题：“岁月留白” */
+        /* 顶部标题 */
         .top-title {
             position: absolute;
             top: 50px;
@@ -79,7 +79,7 @@
         .title-sub {
             font-size: 12px;
             letter-spacing: 2px;
-            color: #dfc59e; /* 优雅的香槟金 */
+            color: #dfc59e;
             text-transform: uppercase;
         }
 
@@ -91,7 +91,7 @@
             font-size: 12px;
             letter-spacing: 1px;
             color: #dfc59e;
-            font-family: 'Courier New', Courier, monospace; /* 使用等宽字体更有科技感 */
+            font-family: 'Courier New', Courier, monospace;
         }
 
         /* 左侧诗句内容 */
@@ -99,13 +99,13 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            max-width: 80%; /* 限制宽度以保持整齐 */
+            max-width: 80%;
         }
 
         .quote-icon {
             font-size: 64px;
-            color: rgba(223, 197, 158, 0.2); /* 淡淡的金色引号 */
-            margin-left: -20px; /* 轻微负向偏置，更有设计感 */
+            color: rgba(223, 197, 158, 0.2);
+            margin-left: -20px;
             margin-bottom: -10px;
         }
 
@@ -120,25 +120,24 @@
         .attribution {
             font-size: 14px;
             color: #dfc59e;
-            align-self: flex-end; /* 作者名字靠右 */
+            align-self: flex-end;
             letter-spacing: 2px;
         }
 
-        /* 右侧图片样式：完美保留你原汁原味的无缝羽化消隐效果 */
+        /* 右侧图片样式：无缝羽化消隐效果 */
         .portrait-image {
-            max-width: 85%; /* 限制图片最大宽度 */
-            max-height: 75vh; /* 限制图片最大高度 */
+            max-width: 85%;
+            max-height: 75vh;
             width: auto;
             height: auto;
-            border-radius: 4px; /* 极轻微的圆角 */
+            border-radius: 4px;
             box-shadow: 
-                0 0 0 10px rgba(0, 0, 0, 0.5), /* 内层深色边框 */
-                0 10px 30px rgba(0, 0, 0, 0.5); /* 整体阴影，更有立体感 */
+                0 0 0 10px rgba(0, 0, 0, 0.5),
+                0 10px 30px rgba(0, 0, 0, 0.5);
             mask-image: linear-gradient(to bottom, transparent 1%, black 15%, black 85%, transparent 99%); 
-            -webkit-mask-image: linear-gradient(to bottom, transparent 1%, black 15%, black 85%, transparent 99%); /* Safari 兼容 */
+            -webkit-mask-image: linear-gradient(to bottom, transparent 1%, black 15%, black 85%, transparent 99%);
             object-fit: cover;
         }
-
     </style>
 </head>
 <body>
@@ -164,7 +163,6 @@
         </div>
 
         <div class="image-section">
-            <!-- 已替换为你想要的知性中国女性肖像 -->
             <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=cover&w=800&q=80" alt="岁月留白人像" class="portrait-image">
         </div>
     </div>
@@ -182,11 +180,11 @@
             document.getElementById('timestamp').textContent = timestampStr;
         }
 
-        // 动态时间戳
+        // 初始化时间并设置定时器
         updateTimestamp();
         setInterval(updateTimestamp, 1000);
 
-        // 动态刷新句库
+        // 预设的句库
         const quotes = [
             { text: "草在结它的种子，风在摇它的叶子。我们站着不说话，就十分美好。", author: "顾城" },
             { text: "与其匆忙地追赶日落，不如静坐窗前，听一朵花开的声音。", author: "林清玄" },
@@ -195,7 +193,7 @@
             { text: "时光悄然流转，愿你在静谧的力量中，活出属于自己的深度。", author: "一言矩阵" }
         ];
 
-        // 每次刷新随机抽取
+        // 随机选择并更新语录
         const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
         document.getElementById('hitokoto_text').textContent = randomQuote.text;
         document.getElementById('hitokoto_author').textContent = "— " + randomQuote.author;
