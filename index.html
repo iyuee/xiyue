@@ -11,13 +11,14 @@
             padding: 0;
             height: 100%;
             width: 100%;
-            background-color: #0d0d0d;
+            background-color: #0b0c0e; /* 换成更有质感的极暗黑 */
             overflow: hidden; /* 防止出现滚动条 */
-            font-family: 'Times New Roman', 'Source Han Serif CN', 'Songti TC', serif; /* 使用优雅的衬线体 */
-            color: #ffffff;
+            font-family: 'Cinzel', 'Times New Roman', 'Source Han Serif CN', 'Songti TC', serif; /* 使用优雅的衬线体 */
+            color: #f3f4f6;
+            letter-spacing: 1px;
         }
 
-        /* 极简网格背景 */
+        /* 极简香槟金暗色网格背景 */
         .background-grid {
             position: fixed;
             top: 0;
@@ -25,37 +26,51 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
+                linear-gradient(rgba(223, 197, 158, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(223, 197, 158, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
             z-index: -1;
         }
 
         /* 整个页面的主布局容器：左右结构 */
         .main-container {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
             height: 100vh;
             align-items: center; /* 垂直居中 */
-            padding: 0 10%; /* 左右留白 */
+            padding: 0 8% 0 10%; /* 左右留白 */
             box-sizing: border-box;
         }
 
         /* 左侧文字区域 */
         .text-section {
-            flex: 1; /* 占据剩余空间 */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: flex-start; /* 文字左对齐 */
-            padding-right: 5%;
+            padding-right: 8%;
         }
 
         /* 右侧图片区域 */
         .image-section {
-            flex: 1;
+            height: 75vh;
             display: flex;
-            justify-content: flex-end; /* 图片右对齐 */
+            justify-content: center;
             align-items: center;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            border: 1px solid rgba(223, 197, 158, 0.1);
+        }
+
+        .image-section::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, #0b0c0e 0%, transparent 15%, transparent 85%, #0b0c0e 100%),
+                        linear-gradient(to top, rgba(11,12,14,0.4), transparent);
+            pointer-events: none;
         }
 
         /* 顶部标题：“岁月留白” */
@@ -69,28 +84,29 @@
         }
 
         .title-main {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: normal;
             margin-bottom: 5px;
-            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 4px;
+            color: #ffffff;
         }
 
         .title-sub {
-            font-size: 12px;
-            letter-spacing: 2px;
-            color: rgba(255, 255, 255, 0.5);
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: #dfc59e; /* 香槟金次标题 */
             text-transform: uppercase;
         }
 
         /* 右上角时间戳 */
         .top-timestamp {
             position: absolute;
-            top: 50px;
+            top: 54px;
             right: 10%;
             font-size: 12px;
             letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.6);
-            font-family: 'Courier New', Courier, monospace; /* 使用等宽字体更有科技感 */
+            color: #dfc59e;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         /* 左侧诗句内容 */
@@ -98,42 +114,51 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            max-width: 80%; /* 限制宽度以保持整齐 */
+            width: 100%;
         }
 
         .quote-icon {
-            font-size: 64px;
-            color: rgba(255, 255, 255, 0.1);
-            margin-left: -20px; /* 轻微负向偏置，更有设计感 */
-            margin-bottom: -10px;
+            font-size: 4.5rem;
+            color: #dfc59e;
+            font-family: Georgia, serif;
+            line-height: 1;
+            opacity: 0.5;
+            margin-left: -10px;
+            margin-bottom: 10px;
         }
 
         .poem-text {
-            font-size: 20px;
+            font-size: 1.8rem;
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.85);
-            letter-spacing: 1px;
+            color: #ffffff;
+            font-weight: 300;
+            letter-spacing: 2px;
             margin-bottom: 30px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
         .attribution {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
+            color: #dfc59e;
             align-self: flex-end; /* 作者名字靠右 */
+            padding-right: 10%;
+            letter-spacing: 3px;
         }
 
-        /* 右侧图片样式：关键在于这个优雅的“相框”处理 */
+        /* 右侧图片样式 */
         .portrait-image {
-            max-width: 80%; /* 限制图片最大宽度 */
-            max-height: 80vh; /* 限制图片最大高度 */
-            width: auto;
-            height: auto;
-            border-radius: 4px; /* 极轻微的圆角 */
-            box-shadow: 
-                0 0 0 10px rgba(0, 0, 0, 0.5), /* 内层深色边框 */
-                0 10px 30px rgba(0, 0, 0, 0.3); /* 整体阴影，更有立体感 */
-            mask-image: linear-gradient(to bottom, transparent 1%, black 20%, black 80%, transparent 99%); /* 关键：顶部和底部羽化消隐 */
-            -webkit-mask-image: linear-gradient(to bottom, transparent 1%, black 20%, black 80%, transparent 99%); /* Safari 兼容 */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.05) brightness(0.9);
+            display: block;
+        }
+
+        /* 移动端自适应 */
+        @media (max-width: 900px) {
+            .main-container { grid-template-columns: 1fr; padding: 90px 6% 40px 6%; }
+            .image-section { display: none; }
+            .poem-text { font-size: 1.4rem; }
         }
 
     </style>
@@ -144,40 +169,3 @@
 
     <div class="top-title">
         <div class="title-main">岁月留白</div>
-        <div class="title-sub">DAILY SAYING</div>
-    </div>
-
-    <div class="top-timestamp" id="timestamp">2026-06-12 09:22:11</div>
-
-    <div class="main-container">
-        <div class="text-section">
-            <div class="poem-content">
-                <div class="quote-icon">“</div>
-                <div class="poem-text">
-                    草在结它的种子，风在摇它的叶子。我们站着不说话，就十分美好。
-                </div>
-                <div class="attribution">—顾城</div>
-            </div>
-        </div>
-
-        <div class="image-section">
-            <img src="portrait.png" alt="岁月留白人像" class="portrait-image">
-        </div>
-    </div>
-
-    <script>
-        function updateTimestamp() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            const timestampStr = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-            document.getElementById('timestamp').textContent = timestampStr;
-        }
-
-        // 初始运行一次
-        updateTimestamp();
-        // 然后每秒运行一次
