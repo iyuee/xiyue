@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>岁月白 Daily Saying</title>
     <style>
-        /* 基础样式：黑底、全屏 */
+        /* 基础样式：纯黑背景，和图片背景完全一致 */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
-            background-color: #0b0c0e;
+            background-color: #000000;
             overflow: hidden;
             font-family: 'Times New Roman', 'Source Han Serif CN', 'Songti TC', serif;
             color: #ffffff;
         }
 
-        /* 极简网格背景 */
+        /* 极简网格背景 - 适配纯黑底色 */
         .background-grid {
             position: fixed;
             top: 0;
@@ -25,8 +25,8 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(223, 197, 158, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(223, 197, 158, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(223, 197, 158, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(223, 197, 158, 0.02) 1px, transparent 1px);
             background-size: 50px 50px;
             z-index: -1;
         }
@@ -124,19 +124,18 @@
             letter-spacing: 2px;
         }
 
-        /* 右侧图片样式：无缝羽化消隐效果 */
+        /* 右侧图片样式：纯黑背景完全融合，去掉多余阴影 */
         .portrait-image {
             max-width: 85%;
             max-height: 75vh;
             width: auto;
             height: auto;
-            border-radius: 4px;
-            box-shadow: 
-                0 0 0 10px rgba(0, 0, 0, 0.5),
-                0 10px 30px rgba(0, 0, 0, 0.5);
+            /* 去掉多余边框阴影，和背景完全融合 */
+            box-shadow: none;
             mask-image: linear-gradient(to bottom, transparent 1%, black 15%, black 85%, transparent 99%); 
             -webkit-mask-image: linear-gradient(to bottom, transparent 1%, black 15%, black 85%, transparent 99%);
             object-fit: cover;
+            object-position: center top;
         }
     </style>
 </head>
@@ -163,7 +162,7 @@
         </div>
 
         <div class="image-section">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=cover&w=800&q=80" alt="岁月留白人像" class="portrait-image">
+            <img src="https://aka.doubaocdn.com/s/50rR1wiyjF" alt="岁月留白人像" class="portrait-image">
         </div>
     </div>
 
