@@ -3,200 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>岁月白 Daily Saying</title>
+    <title>EDGE | 潮酷个性</title>
     <style>
-        /* 基础样式：纯黑背景，和图片背景完全一致 */
-        body, html {
+        * {
             margin: 0;
             padding: 0;
-            height: 100%;
-            width: 100%;
-            background-color: #000000;
-            overflow: hidden;
-            font-family: 'Times New Roman', 'Source Han Serif CN', 'Songti TC', serif;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        /* 全局统一纯黑背景，和图片一致 */
+        body {
+            background: #000000;
             color: #ffffff;
         }
-
-        /* 极简网格背景 - 适配纯黑底色 */
-        .background-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(223, 197, 158, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(223, 197, 158, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-        }
-
-        /* 整个页面的主布局容器：左右结构 */
-        .main-container {
+        /* 导航栏 */
+        header {
             display: flex;
-            height: 100vh;
+            justify-content: space-between;
             align-items: center;
-            padding: 0 10%;
-            box-sizing: border-box;
+            padding: 1.8rem 6%;
+            background: #000000;
         }
-
-        /* 左侧文字区域 */
-        .text-section {
-            flex: 1;
+        .brand {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff3e6c;
+        }
+        .menu a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 1.2rem;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .menu a:hover {
+            color: #ff3e6c;
+        }
+        /* 主区块布局 */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: calc(100vh - 86px);
+        }
+        .content-left {
+            padding: 8% 6%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
-            padding-right: 5%;
+            background: #000000;
         }
-
-        /* 右侧图片区域 */
-        .image-section {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
+        .tag {
+            color: #ff3e6c;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
         }
-
-        /* 顶部标题 */
-        .top-title {
-            position: absolute;
-            top: 50px;
-            left: 10%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+        h2 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
         }
-
-        .title-main {
-            font-size: 24px;
-            font-weight: normal;
-            margin-bottom: 5px;
-            color: rgba(255, 255, 255, 0.9);
-            letter-spacing: 2px;
-        }
-
-        .title-sub {
-            font-size: 12px;
-            letter-spacing: 2px;
-            color: #dfc59e;
-            text-transform: uppercase;
-        }
-
-        /* 右上角时间戳 */
-        .top-timestamp {
-            position: absolute;
-            top: 54px;
-            right: 10%;
-            font-size: 12px;
-            letter-spacing: 1px;
-            color: #dfc59e;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        /* 左侧诗句内容 */
-        .poem-content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            max-width: 80%;
-        }
-
-        .quote-icon {
-            font-size: 64px;
-            color: rgba(223, 197, 158, 0.2);
-            margin-left: -20px;
-            margin-bottom: -10px;
-        }
-
-        .poem-text {
-            font-size: 20px;
+        .desc {
+            color: #999;
+            font-size: 1.05rem;
+            max-width: 420px;
+            margin-bottom: 3rem;
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.9);
-            letter-spacing: 1px;
-            margin-bottom: 30px;
         }
-
-        .attribution {
-            font-size: 14px;
-            color: #dfc59e;
-            align-self: flex-end;
-            letter-spacing: 2px;
+        /* 按钮增强交互 */
+        .action-btn {
+            width: fit-content;
+            padding: 14px 40px;
+            background: #ff3e6c;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.3s ease;
         }
-
-        /* 右侧图片样式：纯黑背景完全融合，去掉多余阴影 */
-        .portrait-image {
-            max-width: 85%;
-            max-height: 75vh;
-            width: auto;
-            height: auto;
-            /* 去掉多余边框阴影，和背景完全融合 */
-            box-shadow: none;
-            mask-image: linear-gradient(to bottom, transparent 1%, black 15%, black 85%, transparent 99%); 
-            -webkit-mask-image: linear-gradient(to bottom, transparent 1%, black 15%, black 85%, transparent 99%);
-            object-fit: cover;
-            object-position: center top;
+        .action-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        /* 右侧图片区，移除蒙版，完全融合 */
+        .content-right {
+            background: #000000;
+            background-image: url('https://aka.doubaocdn.com/s/vtXp1wiyBk');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .content-right::after {
+            display: none;
+        }
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            h2 {
+                font-size: 2.2rem;
+            }
+            .menu {
+                display: none;
+            }
+            .content-right {
+                min-height: 400px;
+            }
         }
     </style>
 </head>
 <body>
-
-    <div class="background-grid"></div>
-
-    <div class="top-title">
-        <div class="title-main">岁月留白</div>
-        <div class="title-sub">DAILY SAYING</div>
-    </div>
-
-    <div class="top-timestamp" id="timestamp">LOADING...</div>
-
-    <div class="main-container">
-        <div class="text-section">
-            <div class="poem-content">
-                <div class="quote-icon">“</div>
-                <div class="poem-text" id="hitokoto_text">
-                    草在结它的种子，风在摇它的叶子。我们站着不说话，就十分美好。
-                </div>
-                <div class="attribution" id="hitokoto_author">— 顾城</div>
-            </div>
+    <header>
+        <div class="brand">EDGE</div>
+        <div class="menu">
+            <a href="#">主页</a>
+            <a href="#">潮流</a>
+            <a href="#">案例</a>
+            <a href="#">合作</a>
         </div>
+    </header>
 
-        <div class="image-section">
-            <img src="https://aka.doubaocdn.com/s/50rR1wiyjF" alt="岁月留白人像" class="portrait-image">
+    <div class="container">
+        <div class="content-left">
+            <span class="tag">UNIQUE STYLE</span>
+            <h2>打破常规<br>塑造自我</h2>
+            <p class="desc">拒绝千篇一律，用创意表达态度。每一处设计，都为与众不同而生。</p>
+            <a href="#" class="action-btn">即刻了解</a>
         </div>
+        <div class="content-right"></div>
     </div>
-
-    <script>
-        function updateTimestamp() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            const timestampStr = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-            document.getElementById('timestamp').textContent = timestampStr;
-        }
-
-        // 初始化时间并设置定时器
-        updateTimestamp();
-        setInterval(updateTimestamp, 1000);
-
-        // 预设的句库
-        const quotes = [
-            { text: "草在结它的种子，风在摇它的叶子。我们站着不说话，就十分美好。", author: "顾城" },
-            { text: "与其匆忙地追赶日落，不如静坐窗前，听一朵花开的声音。", author: "林清玄" },
-            { text: "答案很长，我准备用一生的时间来回答你，你准备好听了吗？", author: "林徽因" },
-            { text: "世界喧嚣，任其嘈杂。内心的波澜不惊，方是最高级的优雅。", author: "岁月留白" },
-            { text: "时光悄然流转，愿你在静谧的力量中，活出属于自己的深度。", author: "一言矩阵" }
-        ];
-
-        // 随机选择并更新语录
-        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-        document.getElementById('hitokoto_text').textContent = randomQuote.text;
-        document.getElementById('hitokoto_author').textContent = "— " + randomQuote.author;
-    </script>
-
 </body>
 </html>
